@@ -17,7 +17,7 @@ class TestJenkinsfile extends BasePipelineTest {
 
     @Test
     void testJenkinsFile() {
-        println("Testing Jenkinsfile")
+        println("Testing Jenkinsfile:")
         def script = loadScript("src/main/java/de/juliansauer/jobs/Jenkinsfile.groovy")
         printCallStack()
     }
@@ -31,7 +31,7 @@ class TestJenkinsfile extends BasePipelineTest {
         if (connection.getResponseCode() == 404)
             throw new IOException(info)
         else
-            println(info)
+            println("   " + info)
     }
 
 }
