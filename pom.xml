@@ -30,6 +30,34 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>Pipeline-Test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>gmaven-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <configuration>
+                                    <providerSelection>2.0</providerSelection>
+                                </configuration>
+                                <goals>
+                                    <goal>generateStubs</goal>
+                                    <goal>compile</goal>
+                                    <goal>generateTestStubs</goal>
+                                    <goal>testCompile</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -63,24 +91,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.gmaven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <providerSelection>2.0</providerSelection>
-                        </configuration>
-                        <goals>
-                            <goal>generateStubs</goal>
-                            <goal>compile</goal>
-                            <goal>generateTestStubs</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
