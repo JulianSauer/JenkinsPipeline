@@ -19,7 +19,6 @@ class TestJenkinsfile extends BasePipelineTest {
     void testJenkinsFile() {
         println("Testing Jenkinsfile")
         def script = loadScript("src/main/java/de/juliansauer/jobs/Jenkinsfile.groovy")
-        script.run()
         printCallStack()
     }
 
