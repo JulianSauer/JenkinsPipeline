@@ -1,5 +1,7 @@
 package de.juliansauer.jobs
 
+// noinspection GroovyAssignabilityCheck
+
 node {
     stage('checkout') {
         git 'https://github.com/JulianSauer/JenkinsPipeline.git'
@@ -9,6 +11,9 @@ node {
     }
     stage('test') {
         sh 'mvn test'
+    }
+    stage('archive') {
+        archiveArtifacts artifacts: 'DemoFile.txt'
     }
 }
 return this
