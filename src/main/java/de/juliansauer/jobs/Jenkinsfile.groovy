@@ -1,11 +1,14 @@
+package de.juliansauer.jobs
+
 node {
-    stage ('checkout') {
+    stage('checkout') {
         git 'https://github.com/JulianSauer/JenkinsPipeline.git'
     }
-    stage ('build') {
+    stage('build') {
         sh 'mvn compile'
     }
-    stage ('test') {
+    stage('test') {
         sh 'mvn test'
     }
 }
+return this
