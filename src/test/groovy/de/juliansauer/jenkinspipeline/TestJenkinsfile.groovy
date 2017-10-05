@@ -10,8 +10,8 @@ class TestJenkinsfile extends BasePipelineTest {
     @Before
     void setUp() throws Exception {
         super.setUp()
-        helper.registerAllowedMethod("git", [String.class], { file ->
-            return new File("C:/Users/jsauer/Documents/projects/JenkinsPipeline")
+        helper.registerAllowedMethod("git", [String.class], { scm ->
+            pingUrl(scm)
         })
     }
 
@@ -21,6 +21,18 @@ class TestJenkinsfile extends BasePipelineTest {
         def script = loadScript("src/main/java/de/juliansauer/jobs/Jenkinsfile.groovy")
         script.run()
         printCallStack()
+    }
+
+    static void pingUrl(String urlString) {
+        URL url = new URL(urlString)
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection()
+        connection.setRequestMethod("GET")
+        connection.connect()
+        String info = "Response code to " + urlString + " is " + connection.getResponseCode()
+        if (connection.getResponseCode() == 404)
+            throw new IOException(info)
+        else
+            println(info)
     }
 
 }
